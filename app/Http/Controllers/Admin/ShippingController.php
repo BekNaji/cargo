@@ -63,7 +63,6 @@ class ShippingController extends Controller
      */
     public function store(ShippingRequest $request)
     {
-        
         $shipping = Shipping::orderBy('id', 'DESC')->first();
         $lastId = $shipping->id ?? 1;
         $shipping = Shipping::create([
