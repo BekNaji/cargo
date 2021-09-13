@@ -7,9 +7,17 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Requests\StatusRequest;
 use App\Models\Shipping;
+use Gate;
 
 class StatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-configs'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

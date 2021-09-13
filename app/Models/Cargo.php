@@ -48,10 +48,10 @@ class Cargo extends Model
         return $this->hasOne(Branch::class,'id','branch_id');
     }
 
-    public function getCreatedAtAttribute($value)
-    {
-        return date('d-m-y h:i:s',strtotime($value));
-    }
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return date('d-m-y h:i:s',strtotime($value));
+    // }
 
 
 }

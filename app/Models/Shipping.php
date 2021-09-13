@@ -53,8 +53,13 @@ class Shipping extends Model
         return $this->hasMany(Product::class,'shipping_id','id');
     }
 
-    public function getCreatedAtAttribute($value)
+    public function logs()
     {
-        return date('d-m-y h:i:s',strtotime($value));
+        return $this->hasMany(Log::class,'shipping_id','id');
     }
+
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return date('d-m-y h:i:s',strtotime($value));
+    // }
 }

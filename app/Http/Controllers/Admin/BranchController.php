@@ -10,10 +10,18 @@ use App\Models\SmsConfig;
 use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Gate;
 
 
 class BranchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('user manage'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

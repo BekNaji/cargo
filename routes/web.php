@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/result','ResultController@index')->name('result');
+
 Auth::routes();
 
 

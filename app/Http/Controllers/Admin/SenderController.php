@@ -7,9 +7,17 @@ use App\Http\Requests\SenderRequest;
 use App\Models\Customer;
 use App\Models\Phone;
 use Illuminate\Http\Request;
+use Gate;
 
 class SenderController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-customers'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

@@ -14,9 +14,17 @@ use App\User;
 use Illuminate\Http\Request;
 use Excel;
 use App\Exports\ShippingsExport;
-
+use Gate;
 class MakeExcellController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-shipping'), 401);
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         $branches = Branch::all();

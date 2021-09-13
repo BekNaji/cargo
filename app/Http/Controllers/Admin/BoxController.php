@@ -10,9 +10,17 @@ use App\Models\Status;
 use App\Models\Cargo;
 use App\Models\Category;
 use App\Models\Product;
+use Gate;
 
 class BoxController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-shipping'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

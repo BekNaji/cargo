@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
-
+use Gate;
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-configs'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

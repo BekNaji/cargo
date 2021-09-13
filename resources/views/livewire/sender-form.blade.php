@@ -1,7 +1,7 @@
 <div>
     @if (!$sender)
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Sender Name" wire:model="key" wire:keydown="search">
+            <input type="text" class="form-control" placeholder="{{__('Sender Name')}}" wire:model="key" wire:keydown="search">
             <div class="shadow-sm result">
                 @foreach ($senders as $sender)
                     <span class="result-row" wire:click="getSender({{ $sender->id }})">

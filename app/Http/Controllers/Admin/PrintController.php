@@ -8,9 +8,16 @@ use App;
 use App\Models\Box;
 use App\Models\Cargo;
 use App\Models\Shipping;
-
+use Gate;
 class PrintController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-shipping'), 401);
+            return $next($request);
+        });
+    }
     public function box(Request $request)
     {
         $box = Box::where('id',$request->id)->with(['products','cargo','cargo.receiver','cargo.sender','cargo.receiver.addresses'])->first();

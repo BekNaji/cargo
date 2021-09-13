@@ -6,9 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Models\Shipping;
+use Gate;
 
 class ChangeStatusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-shipping'), 401);
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         $statuses = Status::orderBy('sort','ASC')->get();

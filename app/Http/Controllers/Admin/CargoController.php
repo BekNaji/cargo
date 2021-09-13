@@ -12,10 +12,17 @@ use App\Models\Baza;
 use App\Models\SmsConfig;
 use Illuminate\Http\Request;
 use App\Models\ScheduleSms;
-
+use Gate;
 
 class CargoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-shipping'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

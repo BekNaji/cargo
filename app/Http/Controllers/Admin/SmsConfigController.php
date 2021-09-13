@@ -6,9 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\SmsConfig;
 use Illuminate\Http\Request;
 use App\Http\Requests\SmsConfigRequest;
-
+use Gate;
 class SmsConfigController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('manage-configs'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *

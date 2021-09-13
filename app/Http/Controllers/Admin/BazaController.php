@@ -5,9 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Baza;
 use Illuminate\Http\Request;
+use Gate;
 
 class BazaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            abort_if(Gate::denies('user manage'), 401);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
