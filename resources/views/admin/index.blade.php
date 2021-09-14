@@ -19,11 +19,11 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                {{$day->renderHtml() }}
+                                
                             </div>
 
                             <div class="col-md-6">
-                                {{$month->renderHtml() }}
+                               
                             </div>
                         </div>
 
@@ -35,7 +35,4 @@
 
 @endsection
 
-@section('js')
-    {!! $day->renderJs() !!}
-    {!! $month->renderJs() !!}
-@endsection
+
