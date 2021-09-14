@@ -8,9 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') | {{auth()->user()->branch->name ?? ''}}</title>
+    <title>@yield('title') | {{ auth()->user()->branch->name ?? '' }}</title>
 
-    
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -39,169 +39,169 @@
     <div id="app">
 
         @if (request('iframe') != 'y')
-        
+
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ auth()->user()->branch->name ?? 'Admin Panel'}}
+                        {{ auth()->user()->branch->name ?? 'Admin Panel' }}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    @if(Auth::check())
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @if (Auth::check())
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        @can('manage-shipping')
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Shipping') }}
-                            </a>
+                            @can('manage-shipping')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Shipping') }}
+                                    </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.shipping.index') }}">
-                                    {{ __('List') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.shipping.create') }}">
-                                    {{ __('Create') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.change.status.index') }}">
-                                    {{ __('Change status') }}
-                                </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('admin.shipping.index') }}">
+                                            {{ __('List') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.shipping.create') }}">
+                                            {{ __('Create') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.change.status.index') }}">
+                                            {{ __('Change status') }}
+                                        </a>
 
-                                <a class="dropdown-item" href="{{ route('admin.excell.index') }}">
-                                    {{ __('Make Excell') }}
-                                </a>
-                                {{-- <a class="dropdown-item" href="{{ route('admin.cargo.index') }}">
+                                        <a class="dropdown-item" href="{{ route('admin.excell.index') }}">
+                                            {{ __('Make Excell') }}
+                                        </a>
+                                        {{-- <a class="dropdown-item" href="{{ route('admin.cargo.index') }}">
                                     {{ __('Cargo') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.box.index') }}">
                                     {{ __('Box') }}
                                 </a> --}}
-                            </div>
-                        </li>
-                        @endcan
-                        @can('manage-customers')
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Customers') }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.sender.index') }}">
-                                    {{ __('Sender') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.receiver.index') }}">
-                                    {{ __('Receiver') }}
-                                </a>
-                            </div>
-                        </li>
-                        @endcan
-                        @can('manage-configs')
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Settings') }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('admin.item.index') }}">
-                                    {{ __('Items') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.baza.index') }}">
-                                    {{ __('Baza') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('admin.status.index') }}">
-                                    {{ __('Status') }}
-                                </a>
-                            </div>
-                        </li>
-                        @endcan
-
-                        @can('user manage')
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Manage Users') }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.permission.index') }}">
-                                        {{ __('Permissions') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.role.index') }}">
-                                        {{ __('Roles') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.user.index') }}">
-                                        {{ __('Users') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('admin.branch.index') }}">
-                                        {{ __('Branches') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('admin.smsconfig.index') }}">
-                                        {{ __('Sms configs') }}
-                                    </a>
-                                </div>
-                            </li>
-                        @endcan
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </div>
                                 </li>
-                                @if (Route::has('register'))
+                            @endcan
+                            @can('manage-customers')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Customers') }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('admin.sender.index') }}">
+                                            {{ __('Sender') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.receiver.index') }}">
+                                            {{ __('Receiver') }}
+                                        </a>
+                                    </div>
+                                </li>
+                            @endcan
+                            @can('manage-configs')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Settings') }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('admin.item.index') }}">
+                                            {{ __('Items') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.baza.index') }}">
+                                            {{ __('Baza') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.status.index') }}">
+                                            {{ __('Status') }}
+                                        </a>
+                                    </div>
+                                </li>
+                            @endcan
+
+                            @can('user manage')
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __('Manage Users') }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('admin.permission.index') }}">
+                                            {{ __('Permissions') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.role.index') }}">
+                                            {{ __('Roles') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.user.index') }}">
+                                            {{ __('Users') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.branch.index') }}">
+                                            {{ __('Branches') }}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('admin.smsconfig.index') }}">
+                                            {{ __('Sms configs') }}
+                                        </a>
+                                    </div>
+                                </li>
+                            @endcan
+                            <!-- Right Side Of Navbar -->
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Authentication Links -->
+                                @guest
                                     <li class="nav-item">
-                                        <a class="nav-link"
-                                            href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
-                                @endif
-                            @else
-                                
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                                href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        </li>
+                                    @endif
+                                @else
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{strtoupper(app()->getLocale())}}
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{route('change.lang','uz')}}">
-                                            UZ
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                                                             document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ strtoupper(app()->getLocale()) }}
                                         </a>
-                                        <a class="dropdown-item" href="{{route('change.lang','en')}}">
-                                            EN
-                                        </a>
-                                        <a class="dropdown-item" href="{{route('change.lang','ru')}}">
-                                            RU
-                                        </a>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('change.lang', 'uz') }}">
+                                                UZ
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('change.lang', 'en') }}">
+                                                EN
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('change.lang', 'ru') }}">
+                                                RU
+                                            </a>
+                                        </div>
+                                    </li>
+                                @endguest
+                            </ul>
+                        </div>
                     @endif
                 </div>
             </nav>
@@ -227,10 +227,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
+        integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <script>
         function refresh(event, id) {
             Livewire.emit(event, id)

@@ -643,6 +643,7 @@ class ComposerStaticInitef0068a84a44b0db2d9c4ffc47c0c0eb
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ResultController' => __DIR__ . '/../..' . '/app/Http/Controllers/ResultController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Livewire\\AddressInput' => __DIR__ . '/../..' . '/app/Http/Livewire/AddressInput.php',
         'App\\Http\\Livewire\\BoxFilter' => __DIR__ . '/../..' . '/app/Http/Livewire/BoxFilter.php',
